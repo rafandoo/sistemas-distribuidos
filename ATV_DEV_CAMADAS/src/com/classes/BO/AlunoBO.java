@@ -35,4 +35,28 @@ public class AlunoBO {
             return null;
         }
     }
+
+    public Aluno buscar(String matricula) {
+        if (matricula != null) {
+            try {
+                return AlunoDAO.buscarAluno(matricula);
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar aluno: " + e.getMessage());
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public double media(String matricula) {
+        if (matricula != null) {
+            try {
+                return AlunoDAO.mediaAluno(buscar(matricula));
+            } catch (Exception e) {
+                System.out.println("Erro ao calcular media do aluno: " + e.getMessage());
+                return 0;
+            }
+        }
+        return 0;
+    }
 }

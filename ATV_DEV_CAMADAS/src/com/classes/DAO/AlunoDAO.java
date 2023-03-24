@@ -95,4 +95,26 @@ public class AlunoDAO {
         }
     }
 
+    public static Aluno buscarAluno(String matricula) {
+        if (matricula != null) {
+            try {
+                List<Aluno> alunos = listarAlunos();
+                assert alunos != null;
+                for (Aluno aluno : alunos) {
+                    if (aluno.getMatricula().equals(matricula)) {
+                        return aluno;
+                    }
+                }
+                return null;
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar aluno: " + e.getMessage());
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public static double mediaAluno(Aluno aluno) {
+        return (aluno.getNota1() + aluno.getNota2() + aluno.getNota3()) / 3;
+    }
 }

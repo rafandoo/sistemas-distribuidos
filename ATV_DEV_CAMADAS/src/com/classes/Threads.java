@@ -13,11 +13,13 @@ public class Threads extends Thread {
         this.semaforo = semaforo;
     }
 
-    public void menu() {
+    private void menu() {
         System.out.println("1 - Inserir");
         System.out.println("2 - Remover");
         System.out.println("3 - Listar");
-        System.out.println("4 - Sair");
+        System.out.println("4 - Buscar");
+        System.out.println("5 - Media");
+        System.out.println("6 - Sair");
     }
 
     private void inserir() {
@@ -59,6 +61,24 @@ public class Threads extends Thread {
         System.out.println(alunoBO.listar());
     }
 
+    private void buscar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Matricula: ");
+        String matricula = sc.nextLine();
+
+        AlunoBO alunoBO = new AlunoBO();
+        System.out.println(alunoBO.buscar(matricula));
+    }
+
+    private void media() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Matricula: ");
+        String matricula = sc.nextLine();
+
+        AlunoBO alunoBO = new AlunoBO();
+        System.out.println(alunoBO.media(matricula));
+    }
+
     private int escolher() {
         menu();
         Scanner sc = new Scanner(System.in);
@@ -81,6 +101,14 @@ public class Threads extends Thread {
                 listar();
                 break;
             case 4:
+                System.out.println("Buscar");
+                buscar();
+                break;
+            case 5:
+                System.out.println("Media");
+                media();
+                break;
+            case 6:
                 System.out.println("Sair");
                 System.exit(0);
                 break;
