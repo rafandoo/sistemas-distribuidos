@@ -29,12 +29,8 @@ public class AlunoDAO {
                         + aluno.getNome() + ";"
                         + aluno.getCurso() + ";"
                         + aluno.getEmail() + ";"
-                        + aluno.getTelefone() + ";"
-                        + aluno.getNota1() + ";"
-                        + aluno.getNota2() + ";"
-                        + aluno.getNota3()
+                        + aluno.getTelefone()
                 );
-
                 arquivo.close();
             } catch (Exception e) {
                 System.out.println("Erro ao gravar no arquivo: " + e.getMessage());
@@ -56,10 +52,7 @@ public class AlunoDAO {
                                 + aluno.getNome() + ";"
                                 + aluno.getCurso() + ";"
                                 + aluno.getEmail() + ";"
-                                + aluno.getTelefone() + ";"
-                                + aluno.getNota1() + ";"
-                                + aluno.getNota2() + ";"
-                                + aluno.getNota3()
+                                + aluno.getTelefone()
                         );
                     }
                 }
@@ -82,9 +75,6 @@ public class AlunoDAO {
                 aluno.setCurso(dados[2]);
                 aluno.setEmail(dados[3]);
                 aluno.setTelefone(dados[4]);
-                aluno.setNota1(Float.parseFloat(dados[5]));
-                aluno.setNota2(Float.parseFloat(dados[6]));
-                aluno.setNota3(Float.parseFloat(dados[7]));
                 alunos.add(aluno);
                 linha = br.readLine();
             }
@@ -112,9 +102,5 @@ public class AlunoDAO {
             }
         }
         return null;
-    }
-
-    public static double mediaAluno(Aluno aluno) {
-        return (aluno.getNota1() + aluno.getNota2() + aluno.getNota3()) / 3;
     }
 }
