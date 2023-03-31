@@ -1,25 +1,25 @@
 package com.classes.BO;
 
 import com.classes.DAO.AlunoDAO;
-import com.classes.DTO.Aluno;
+import com.classes.DTO.AlunoDTO;
 
 import java.util.List;
 
 public class AlunoBO {
 
-    public void inserir(Aluno aluno) {
-        AlunoDAO.insereAluno(aluno);
+    public void inserir(AlunoDTO alunoDTO) {
+        AlunoDAO.insereAluno(alunoDTO);
     }
 
     public void remover(String matricula) {
         AlunoDAO.removeAluno(matricula);
     }
 
-    public List<Aluno> listar() {
+    public List<AlunoDTO> listar() {
         return AlunoDAO.listarAlunos();
     }
 
-    public Aluno buscar(String matricula) {
+    public AlunoDTO buscar(String matricula) {
         return AlunoDAO.buscarAluno(matricula);
     }
 }

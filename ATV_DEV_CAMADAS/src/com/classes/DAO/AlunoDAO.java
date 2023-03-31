@@ -1,6 +1,6 @@
 package com.classes.DAO;
 
-import com.classes.DTO.Aluno;
+import com.classes.DTO.AlunoDTO;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,17 +19,17 @@ public class AlunoDAO {
     static PrintWriter gravarArquivo;
 
     // Metodos
-    public static void insereAluno(Aluno aluno) {
-        if (aluno != null) {
+    public static void insereAluno(AlunoDTO alunoDTO) {
+        if (alunoDTO != null) {
             try {
                 arquivo = new FileWriter(NOME_ARQUIVO, true);
                 gravarArquivo = new PrintWriter(arquivo);
                 gravarArquivo.println(
-                        aluno.getMatricula() + ";"
-                        + aluno.getNome() + ";"
-                        + aluno.getCurso() + ";"
-                        + aluno.getEmail() + ";"
-                        + aluno.getTelefone()
+                        alunoDTO.getMatricula() + ";"
+                        + alunoDTO.getNome() + ";"
+                        + alunoDTO.getCurso() + ";"
+                        + alunoDTO.getEmail() + ";"
+                        + alunoDTO.getTelefone()
                 );
                 arquivo.close();
             } catch (Exception e) {
@@ -41,18 +41,18 @@ public class AlunoDAO {
     public static void removeAluno(String matricula) {
         if (matricula != null) {
             try {
-                List<Aluno> alunos = listarAlunos();
+                List<AlunoDTO> alunoDTOS = listarAlunos();
                 arquivo = new FileWriter(NOME_ARQUIVO);
                 gravarArquivo = new PrintWriter(arquivo);
-                assert alunos != null;
-                for (Aluno aluno : alunos) {
-                    if (!aluno.getMatricula().equals(matricula)) {
+                assert alunoDTOS != null;
+                for (AlunoDTO alunoDTO : alunoDTOS) {
+                    if (!alunoDTO.getMatricula().equals(matricula)) {
                         gravarArquivo.println(
-                                aluno.getMatricula() + ";"
-                                + aluno.getNome() + ";"
-                                + aluno.getCurso() + ";"
-                                + aluno.getEmail() + ";"
-                                + aluno.getTelefone()
+                                alunoDTO.getMatricula() + ";"
+                                + alunoDTO.getNome() + ";"
+                                + alunoDTO.getCurso() + ";"
+                                + alunoDTO.getEmail() + ";"
+                                + alunoDTO.getTelefone()
                         );
                     }
                 }
@@ -63,36 +63,36 @@ public class AlunoDAO {
         }
     }
 
-    public static List<Aluno> listarAlunos() {
-        List<Aluno> alunos = new ArrayList<>();
+    public static List<AlunoDTO> listarAlunos() {
+        List<AlunoDTO> alunoDTOS = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(NOME_ARQUIVO))) {
             String linha = br.readLine();
             while (linha != null) {
                 String[] dados = linha.split(";");
-                Aluno aluno = new Aluno();
-                aluno.setMatricula(dados[0]);
-                aluno.setNome(dados[1]);
-                aluno.setCurso(dados[2]);
-                aluno.setEmail(dados[3]);
-                aluno.setTelefone(dados[4]);
-                alunos.add(aluno);
+                AlunoDTO alunoDTO = new AlunoDTO();
+                alunoDTO.setMatricula(dados[0]);
+                alunoDTO.setNome(dados[1]);
+                alunoDTO.setCurso(dados[2]);
+                alunoDTO.setEmail(dados[3]);
+                alunoDTO.setTelefone(dados[4]);
+                alunoDTOS.add(alunoDTO);
                 linha = br.readLine();
             }
-            return alunos;
+            return alunoDTOS;
         } catch (Exception e) {
             System.out.println("Erro ao listar alunos: " + e.getMessage());
             return null;
         }
     }
 
-    public static Aluno buscarAluno(String matricula) {
+    public static AlunoDTO buscarAluno(String matricula) {
         if (matricula != null) {
             try {
-                List<Aluno> alunos = listarAlunos();
-                assert alunos != null;
-                for (Aluno aluno : alunos) {
-                    if (aluno.getMatricula().equals(matricula)) {
-                        return aluno;
+                List<AlunoDTO> alunoDTOS = listarAlunos();
+                assert alunoDTOS != null;
+                for (AlunoDTO alunoDTO : alunoDTOS) {
+                    if (alunoDTO.getMatricula().equals(matricula)) {
+                        return alunoDTO;
                     }
                 }
                 return null;

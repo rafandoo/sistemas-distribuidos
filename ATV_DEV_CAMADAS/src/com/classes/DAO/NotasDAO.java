@@ -1,6 +1,6 @@
 package com.classes.DAO;
 
-import com.classes.DTO.Notas;
+import com.classes.DTO.NotasDTO;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,7 +19,7 @@ public class NotasDAO {
     static PrintWriter gravarArquivo;
 
     // Metodos
-    public static void insereNotas(Notas nota) {
+    public static void insereNotas(NotasDTO nota) {
         if (nota != null) {
             try {
                 arquivo = new FileWriter(NOME_ARQUIVO, true);
@@ -40,11 +40,11 @@ public class NotasDAO {
     public static void deletarNotas(String matricula) {
         if (matricula != null) {
             try {
-                List<Notas> notas = listarNotas();
+                List<NotasDTO> notas = listarNotas();
                 arquivo = new FileWriter(NOME_ARQUIVO);
                 gravarArquivo = new PrintWriter(arquivo);
                 assert notas != null;
-                for (Notas nota : notas) {
+                for (NotasDTO nota : notas) {
                     if (!nota.getMatricula().equals(matricula)) {
                         gravarArquivo.println(
                                 nota.getMatricula() + ";"
@@ -61,13 +61,13 @@ public class NotasDAO {
         }
     }
 
-    public static List<Notas> listarNotas() {
-        List<Notas> notas = new ArrayList<>();
+    public static List<NotasDTO> listarNotas() {
+        List<NotasDTO> notas = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(NOME_ARQUIVO))) {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(";");
-                Notas nota = new Notas();
+                NotasDTO nota = new NotasDTO();
                 nota.setMatricula(dados[0]);
                 nota.setNota1(Double.parseDouble(dados[1]));
                 nota.setNota2(Double.parseDouble(dados[2]));
@@ -81,12 +81,12 @@ public class NotasDAO {
         }
     }
 
-    public static Notas buscarNotas(String matricula) {
+    public static NotasDTO buscarNotas(String matricula) {
         if (matricula != null) {
             try {
-                List<Notas> notas = listarNotas();
+                List<NotasDTO> notas = listarNotas();
                 assert notas != null;
-                for (Notas nota : notas) {
+                for (NotasDTO nota : notas) {
                     if (nota.getMatricula().equals(matricula)) {
                         return nota;
                     }

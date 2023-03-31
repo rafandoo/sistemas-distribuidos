@@ -1,11 +1,11 @@
 package com.classes.BO;
 
 import com.classes.DAO.NotasDAO;
-import com.classes.DTO.Notas;
+import com.classes.DTO.NotasDTO;
 
 public class NotasBO {
 
-    public void inserir(Notas nota) {
+    public void inserir(NotasDTO nota) {
         NotasDAO.insereNotas(nota);
     }
 
@@ -13,12 +13,12 @@ public class NotasBO {
         NotasDAO.deletarNotas(matricula);
     }
 
-    public Notas buscar(String matricula) {
+    public NotasDTO buscar(String matricula) {
         return NotasDAO.buscarNotas(matricula);
     }
 
     public double media(String matricula) {
-        Notas notas = NotasDAO.buscarNotas(matricula);
-        return (notas.getNota1() + notas.getNota2() + notas.getNota3()) / 3;
+        NotasDTO notasDTO = NotasDAO.buscarNotas(matricula);
+        return (notasDTO.getNota1() + notasDTO.getNota2() + notasDTO.getNota3()) / 3;
     }
 }

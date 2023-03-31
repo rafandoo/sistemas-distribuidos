@@ -2,8 +2,8 @@ package com.classes;
 
 import com.classes.BO.AlunoBO;
 import com.classes.BO.NotasBO;
-import com.classes.DTO.Aluno;
-import com.classes.DTO.Notas;
+import com.classes.DTO.AlunoDTO;
+import com.classes.DTO.NotasDTO;
 
 import java.util.Scanner;
 import java.util.concurrent.Semaphore;
@@ -41,22 +41,22 @@ public class Main {
 
     // Metodos
     private static void inserirAluno() {
-        Aluno aluno = new Aluno();
+        AlunoDTO alunoDTO = new AlunoDTO();
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Nome: ");
-        aluno.setNome(sc.nextLine());
+        alunoDTO.setNome(sc.nextLine());
         System.out.println("Matricula: ");
-        aluno.setMatricula(sc.nextLine());
+        alunoDTO.setMatricula(sc.nextLine());
         System.out.println("Curso: ");
-        aluno.setCurso(sc.nextLine());
+        alunoDTO.setCurso(sc.nextLine());
         System.out.println("Email: ");
-        aluno.setEmail(sc.nextLine());
+        alunoDTO.setEmail(sc.nextLine());
         System.out.println("Telefone: ");
-        aluno.setTelefone(sc.nextLine());
+        alunoDTO.setTelefone(sc.nextLine());
 
         AlunoBO alunoBO = new AlunoBO();
-        alunoBO.inserir(aluno);
+        alunoBO.inserir(alunoDTO);
     }
 
     private static void removerAluno() {
@@ -83,7 +83,7 @@ public class Main {
     }
 
     private static void inserirNota() {
-        Notas nota = new Notas();
+        NotasDTO nota = new NotasDTO();
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Matricula: ");

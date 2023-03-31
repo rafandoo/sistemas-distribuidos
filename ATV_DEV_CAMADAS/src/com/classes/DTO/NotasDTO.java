@@ -1,6 +1,6 @@
 package com.classes.DTO;
 
-public class Notas {
+public class NotasDTO {
 
     // Atributos
     private String matricula;
@@ -9,10 +9,10 @@ public class Notas {
     private double nota3;
 
     // Construtores
-    public Notas() {
+    public NotasDTO() {
     }
 
-    public Notas(String matricula, double nota1, double nota2, double nota3) {
+    public NotasDTO(String matricula, double nota1, double nota2, double nota3) {
         this.matricula = matricula;
         this.nota1 = nota1;
         this.nota2 = nota2;
