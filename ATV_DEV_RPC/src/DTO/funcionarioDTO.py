@@ -1,12 +1,14 @@
 from enum import Enum
 
 
+# Enum para representar os cargos
 class Cargo(Enum):
     ADMINISTRATIVO = 1
     COMERCIAL = 2
     SUPORTE = 3
 
 
+# Classe DTO para representar um funcionario
 class FuncionarioDTO:
     def __init__(self, matricula: int, nome: str, email: str, cargo: Cargo, salario: float):
         self._matricula = matricula
@@ -15,6 +17,8 @@ class FuncionarioDTO:
         self._cargo = cargo
         self._salario = salario
 
+    # Metodo para exportar os dados do funcionario em formato de valores separados por virgula
+    @property
     def exportComma(self):
         return f"{self._matricula},{self._nome},{self._email},{self._cargo.value},{self._salario}"
 

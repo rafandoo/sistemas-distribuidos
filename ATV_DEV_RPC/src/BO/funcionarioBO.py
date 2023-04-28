@@ -1,19 +1,24 @@
 from ..DAO.funcionarioDAO import FuncionarioDAO
-from ..DTO.funcionarioDTO import FuncionarioDTO
+from ..DTO.funcionarioDTO import FuncionarioDTO, Cargo
+
+# Instancia do DAO
+funcionarioDAO = FuncionarioDAO()
+
+# Metodos para inserir, remover, listar e buscar funcionarios, utilizando o DAO
 
 
-class FuncionarioBO:
-    def __init__(self):
-        self.funcionarioDAO = FuncionarioDAO()
+def inserir(matricula: int, nome: str, email: str, cargo: int, salario: float):
+    funcionarioDTO = FuncionarioDTO(matricula, nome, email, Cargo(cargo), salario)
+    funcionarioDAO.insere(funcionarioDTO)
 
-    def inserir(self, funcionarioDTO: FuncionarioDTO):
-        self.funcionarioDAO.insere(funcionarioDTO)
 
-    def remover(self, matricula: int):
-        self.funcionarioDAO.remove(matricula)
+def remover(matricula: int):
+    funcionarioDAO.remove(matricula)
 
-    def listar(self) -> list:
-        return self.funcionarioDAO.lista()
 
-    def buscar(self, matricula: int) -> FuncionarioDTO:
-        return self.funcionarioDAO.busca(matricula)
+def listar() -> list:
+    return funcionarioDAO.lista()
+
+
+def buscar(matricula: int) -> str:
+    return funcionarioDAO.busca(matricula).__repr__()

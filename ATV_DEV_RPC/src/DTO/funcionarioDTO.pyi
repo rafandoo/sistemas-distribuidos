@@ -6,5 +6,12 @@ class Cargo(Enum):
     SUPORTE: int
 
 class FuncionarioDTO:
-    def __init__(self, matricula: int, nome: str, email: str, cargo: Cargo, salario: float) -> None: ...
+    def __init__(self, matricula: int, nome: str, email: str, cargo: Cargo, salario: float) -> None:
+        self._matricula = matricula
+        self._nome = nome
+        self._email = email
+        self._cargo = cargo
+        self._salario = salario
+        ...
+
     def exportComma(self): ...
