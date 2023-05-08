@@ -18,8 +18,7 @@ class FuncionarioDTO:
         self._salario = salario
 
     # Metodo para exportar os dados do funcionario em formato de valores separados por virgula
-    @property
-    def exportComma(self):
+    def exportComma(self) -> str:
         return f"{self._matricula},{self._nome},{self._email},{self._cargo.value},{self._salario}"
 
     def __str__(self):
